@@ -41,13 +41,11 @@ class Campuses extends Component {
       flexDirection: "column",
       alignItems: "center",
       textDecoration: "none"
-
     }
+
     const img = {
       width: "250px",
       height: "250px",
-      // position: "fixed",
-      // bottom: "350px",
       borderRadius: "50%",
     }
 
