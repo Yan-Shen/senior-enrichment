@@ -51,7 +51,7 @@ export function updateCampusThunk(campusId, updatedCampus, history){
         console.log('updatedcampus', updatedCampus)
         store.dispatch(updateCampus(updatedCampus))
         history.push('/campuses');
-        window.location.reload();
+        // window.location.reload();
       })
   }
 }
@@ -81,9 +81,12 @@ export default function reducer(state=[], action){
     case GET_CAMPUS:
       return [...state, action.newCampus]
 
+    // tricky! updated campus is an array
     case UPDATE_CAMPUS:
       return state.filter(campus=>{
-        return campus.name!==action.updatedCampus.name
+        console.log("action.updatedCampus ", action.updatedCampus[0]);
+        console.log("campus.id ", campus.id);
+        return campus.id!==action.updatedCampus[0].id
       }).concat(action.updatedCampus)
 
     default:

@@ -58,7 +58,9 @@ class NewCampusEntry extends Component {
     evt.preventDefault();
     const addSubmit = this.props.addSubmit;
     const updateSubmit = this.props.updateSubmit;
-    this.props.match.params.campusId ? updateSubmit(this.state) : addSubmit(this.state);
+    const updateState = this.state;
+    updateState.id = this.props.match.params.campusId;
+    this.props.match.params.campusId ? updateSubmit(updateState) : addSubmit(this.state);
     this.setState({
       name: '',
       imageUrl: '',
@@ -81,8 +83,6 @@ class NewCampusEntry extends Component {
   render() {
 
     const campusId = this.props.match.params.campusId
-
-    console.log('local state', this.state)
 
     return (
       <form onSubmit={this.handleSubmit}>

@@ -56,7 +56,7 @@ export function updateStudentThunk(studentId, history, updatedStudent){
         console.log('updatedStudent', updatedStudent)
         dispatch(updateStudent(updatedStudent))
         history.push('/students');
-        window.location.reload();
+        // window.location.reload();
       })
   }
 }
@@ -72,6 +72,8 @@ export const deleteStudentThunk = (studentId, history) => {
   }
 }
 /* ----------------- reducer --------------------- */
+
+// tricky updatedStudent is an array
 const reducer = (students=[], action)=>{
   switch (action.type) {
     case GET_STUDENTS:
@@ -82,8 +84,7 @@ const reducer = (students=[], action)=>{
       return action.allStudents;
     case UPDATE_STUDENT:
       return students.filter(student=>{
-        return student.firstName!==action.updatedStudent.firstName &&
-              student.lastName!== action.updatedStudent.lastName
+        return student.id!==action.updatedStudent[0].id
       }).concat(action.updatedStudent)
     default:
       return students;
