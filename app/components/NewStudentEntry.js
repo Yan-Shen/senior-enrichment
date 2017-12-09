@@ -97,7 +97,7 @@ class NewStudentEntry  extends Component {
         gpa: this.state.gpa,
         campusId: campus.id
       }
-      this.state.firstName ? updateSubmit(newStudent) : addSubmit(newStudent);
+      this.props.match.params.studentId?  updateSubmit(newStudent) : addSubmit(newStudent);
     } else {
       this.setState({warning: true})
       return

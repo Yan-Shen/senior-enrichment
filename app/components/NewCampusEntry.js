@@ -58,7 +58,7 @@ class NewCampusEntry extends Component {
     evt.preventDefault();
     const addSubmit = this.props.addSubmit;
     const updateSubmit = this.props.updateSubmit;
-    this.state.name ? updateSubmit(this.state) : addCampusThunk(this.state);
+    this.props.match.params.campusId ? updateSubmit(this.state) : addSubmit(this.state);
     this.setState({
       name: '',
       imageUrl: '',
