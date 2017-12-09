@@ -1,0 +1,89 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  background: #222222;
+  font-family: 'Lobster', cursive;
+  font-size: 1.5em;
+}
+
+sidebar {
+  padding: 0 !important;
+  background: #303030;
+  height: calc(100vh);
+  width: 100px;
+  overflow-y: auto;
+  border-right: 2px solid #555; }
+
+
+sidebar section > * {
+  padding: 0 5px 0 0; }
+
+
+sidebar .menu-item a:hover {
+  color: white; }
+
+sidebar .menu-item a.active, sidebar .menu-item a:hover {
+  display: inline-block;
+  height: 50px;
+  width: 100%;
+  border-left: 5px solid #00bc8c;
+}
+
+#main {
+  height: 100vh;
+}
+
+#title{
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  background-color: #303030;
+  margin-top: 0;
+  margin-bottom: 25px;
+  padding: 10px 0;
+  color: white;
+}
+
+#content{
+  display: flex;
+  justify-content: center;
+}
+
+/* ---------------  Students Component ------------------- */
+#studentList {
+  padding-bottom: 15px;
+  color:grey;
+
+}
+
+#studentList:hover{
+  background-color: #00bc8c;
+}
+
+#studentIcon {
+  padding-right: 20px;
+}
+
+#listContainer {
+  padding-top: 25px;
+}
+
+/* ---------------  NewCampusEntry Component ------------------- */
+#nameInput {
+  width: 600px;
+}
+
+#descInput {
+  height: 250px;
+  margin-bottom: 40px;
+}
+
+.btnContainer {
+  text-align: center;
+}
+
+/* ---------------  NewCampusEntry Component ------------------- */
+#studentName {
+  width: 600px;
+}
