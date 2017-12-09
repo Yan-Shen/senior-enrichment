@@ -22,15 +22,16 @@ class Campuses extends Component {
 
     const campusesContainer = {
       display: "flex",
+      flexWrap: "wrap",
       width: "100%",
       height: "100%",
       flexDirection: "flex-wrap",
-      color: "black"
+      paddingTop: "125px"
     }
 
     const campusContainer = {
       display: "flex",
-      flex: "0 0 25%",
+      flex: "0 0 33.3%",
       alignItems: "center",
       paddingLeft: "45px"
     }
@@ -44,8 +45,10 @@ class Campuses extends Component {
     }
     const img = {
       width: "250px",
-      position: "fixed",
-      bottom: "350px",
+      height: "250px",
+      // position: "fixed",
+      // bottom: "350px",
+      borderRadius: "50%",
     }
 
     const captionContainer = {
