@@ -31,34 +31,37 @@ class SingleCampus extends Component {
     const student = this.props.student;
     const campus = this.props.campuses.find(campus=>campus.id=== +student.campusId)
     const studentId = student.id;
+    const student_campus = {
+      color: "grey"
+    }
     console.log('this.props', this.props)
 
-    const img = {
-      height: "50%"
-    }
     return (
-      <div>
+      <div id="singleStudentWrapper">
 
         <div>
-          <h3>Name: {`${student.firstName} ${student.lastName}`}</h3>
-          <h3>Email: {student.email}</h3>
-          <h3>GPA: {student.gpa}</h3>
+          <h3 className="marginTop">Name: {`${student.firstName} ${student.lastName}`}</h3>
+          <h3 className="marginTop">Email: {student.email}</h3>
+          <h3 className="marginTop">GPA: {student.gpa}</h3>
         </div>
 
         { campus &&
-                  <div>
-                  <NavLink to={`/campuses/academy/${student.campusId}`} key={student.campusId}>
-                  <h3 >Campus: {campus.name}</h3>
+                  <div className="marginTop" id="studentCampusWrapper">
+                  <NavLink id="campusLink" to={`/campuses/academy/${student.campusId}`} key={student.campusId}>
+                  <h3 style={student_campus} className="studentItem" >
+                  <i id="student_campus_icon" className="material-icons">account_balance</i>
+                   {campus.name}</h3>
                   </NavLink>
                 </div>
         }
 
+        <div className="marginTop">
+          <NavLink  to ={`/students/${student.id}/edit`} activeClassName="active">
+          <button id="btnEdit" type="submit" className="btn btn-success">Edit</button>
+          </NavLink>
 
-        <NavLink to ={`/students/${student.id}/edit`} activeClassName="active">
-        <button type="submit" className="btn btn-success">Edit</button>
-        </NavLink>
-
-        <button onClick={this.props.clickHandler} className="btn btn-danger">Delete</button>
+          <button id="btnDelete" onClick={this.props.clickHandler} className="btn btn-danger">Delete</button>
+        </div>
     </div>
      )
   }

@@ -38,22 +38,18 @@ class SingleCampus extends Component {
     const campusId = campus.id;
     console.log('this.props', this.props)
 
-    const img = {
-      height: "50%"
-    }
-    return (
-      <div>
 
-        <div>
+    return (
+      <div id="singleCampusContainer">
+
           <h1>{campus.name}</h1>
-          <img style={img}src={ campus.imageUrl } />
-          <h4><span>{campus.description}</span></h4>
-        </div>
+          <img id="campusImg" className="center" src={ campus.imageUrl } />
+          <h4 className="center description" ><span>{campus.description}</span></h4>
 
         <div>
           {
             campus.students &&
-             ( <ul>
+             ( <ul className="center">
               {
                 campus.students.map(student=>{
                   return (
@@ -66,13 +62,13 @@ class SingleCampus extends Component {
             </ul>)
             }
 
+        </div >
+        <div className="center">
+          <NavLink to ={`/campuses/${campusId}/edit`} activeClassName="active">
+          <button type="submit" className="btn btn-success">Edit</button>
+          </NavLink>
+         <button onClick={this.props.clickHandler} className="btn btn-danger">Delete</button>
         </div>
-
-        <NavLink to ={`/campuses/${campusId}/edit`} activeClassName="active">
-        <button type="submit" className="btn btn-success">Edit</button>
-        </NavLink>
-
-        <button onClick={this.props.clickHandler} className="btn btn-danger">Delete</button>
     </div>
      )
   }
