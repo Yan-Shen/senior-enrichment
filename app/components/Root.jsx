@@ -56,7 +56,7 @@ export default class Root extends Component {
           </div>
 
           <div style={mainSection}>
-          <h1 id="title">Academy of Javascript Campuses</h1>
+          <h1 id="title">Academy of Javascript</h1>
           {/* this is front end route, only need to match link, not backend */}
             <Switch>
               <div id="content">

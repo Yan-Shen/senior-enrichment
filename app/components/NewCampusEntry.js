@@ -22,8 +22,10 @@ class NewCampusEntry extends Component {
     this.state = {
       name: '',
       imageUrl: '',
-      description: ''
+      description: '',
+      dirty: false
      }
+    this.warning = "";
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
@@ -31,7 +33,6 @@ class NewCampusEntry extends Component {
   }
 
   componentDidMount(){
-    console.log('state', this.state)
     if(this.props.campus) {
       this.setState({
         name: this.props.campus.name,
@@ -43,28 +44,41 @@ class NewCampusEntry extends Component {
   }
 
   handleNameChange (evt) {
-    this.setState({name: evt.target.value })
+    this.setState({
+      name: evt.target.value,
+      dirty: true })
   }
 
   handleImageChange(evt){
-    this.setState({imageUrl: evt.target.value})
+    this.setState({
+      imageUrl: evt.target.value,
+      dirty: true
+    })
   }
 
   handleDescriptionChange(evt){
-    this.setState({description: evt.target.value})
+    this.setState({
+      description: evt.target.value,
+      dirty: true
+    })
   }
 
   handleSubmit(evt){
     evt.preventDefault();
+
     const addSubmit = this.props.addSubmit;
     const updateSubmit = this.props.updateSubmit;
-    const updateState = this.state;
-    updateState.id = this.props.match.params.campusId;
-    this.props.match.params.campusId ? updateSubmit(updateState) : addSubmit(this.state);
+    const campusForm = {
+      name: this.state.name,
+      imageUrl: this.state.imageUrl,
+      description: this.state.description
+    }
+    this.props.match.params.campusId ? updateSubmit(campusForm) : addSubmit(campusForm);
     this.setState({
       name: '',
       imageUrl: '',
-      description: ''
+      description: '',
+      dirty: false
      })
   }
 
@@ -83,52 +97,64 @@ class NewCampusEntry extends Component {
   render() {
 
     const campusId = this.props.match.params.campusId
+    const validateAll = this.state.name && this.state.imageUrl && this.state.description;
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+
+            <div className="form-group">
+            <label>Campus Name</label>
+              <input
+                id = "nameInput"
+                className="form-control CampusInput"
+                onChange={this.handleNameChange}
+                value={this.state.name}
+              />
+              {this.state.dirty && !this.state.name &&
+              <small>Please enter a name</small>}
+            </div>
+
+
+            <div className="form-group">
+            <label>Campus ImageUrl</label>
+              <input
+                type="text"
+                className="form-control"
+                onChange={this.handleImageChange}
+                value={this.state.imageUrl}
+              />
+            {this.state.dirty && !this.state.imageUrl &&
+              <small>Please enter an imageUrl</small>}
+            </div>
+
+
+            <div className="form-group">
+            <label>Description</label>
+              <textarea
+                id="descInput"
+                className="form-control"
+                onChange={this.handleDescriptionChange}
+                value={this.state.description}
+              />
+              {this.state.dirty && !this.state.description &&
+              <small>Please enter a description</small>}
+            </div>
+
 
           <div className="form-group">
-          <label>Campus Name</label>
-            <input
-              id = "nameInput"
-              className="form-control CampusInput"
-              onChange={this.handleNameChange}
-              value={this.state.name}
-            />
+            <div className="btnContainer">
+              <button
+              type="submit"
+              className="btn btn-success"
+              disabled={this.state.dirty && !validateAll}>
+                Submit
+              </button>
           </div>
-
-
-          <div className="form-group">
-          <label>Campus ImageUrl</label>
-            <input
-              type="text"
-              className="form-control"
-              onChange={this.handleImageChange}
-              value={this.state.imageUrl}
-            />
-          </div>
-
-
-          <div className="form-group">
-          <label>Description</label>
-            <textarea
-              id="descInput"
-              className="form-control"
-              onChange={this.handleDescriptionChange}
-              value={this.state.description}
-            />
-          </div>
-
-
-        <div className="form-group">
-          <div className="btnContainer">
-            <button type="submit" className="btn btn-success">
-              Submit
-            </button>
         </div>
-      </div>
 
-      </form>
+        </form>
+      </div>
     )
   }
 

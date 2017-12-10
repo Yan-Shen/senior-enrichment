@@ -137,7 +137,7 @@ class NewStudentEntry  extends Component {
             </div>
 
             <div className="form-group">
-              <label>gpa</label>
+              <label>GPA</label>
               <input type="text"
               className="form-control"
               value = {this.state.gpa}
