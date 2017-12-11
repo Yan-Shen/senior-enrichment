@@ -14,7 +14,6 @@ class Campuses extends Component {
   render() {
 
     const campuses = this.props.campuses;
-    // console.log('campuses', campuses);
 
     const container = {
       width: "100%",
@@ -33,7 +32,8 @@ class Campuses extends Component {
       display: "flex",
       flex: "0 0 33.3%",
       alignItems: "center",
-      paddingLeft: "45px"
+      paddingLeft: "45px",
+      paddingBottom: "25px"
     }
 
     const imageContainer = {
@@ -43,11 +43,7 @@ class Campuses extends Component {
       textDecoration: "none"
     }
 
-    const img = {
-      width: "250px",
-      height: "250px",
-      borderRadius: "50%",
-    }
+
 
     const captionContainer = {
       paddingTop: "30px",
@@ -63,9 +59,9 @@ class Campuses extends Component {
           campuses.map(campus=>(
             <div style={campusContainer} key={ campus.id }>
               <NavLink style={imageContainer} to={`/campuses/academy/${campus.id}`} className="thumbnail" >
-                <img style={img} src={ campus.imageUrl } />
+                <img className="img" src={ campus.imageUrl } />
                 <div style={captionContainer} className="caption">
-                  <h3>
+                  <h3 className="campusName">
                     <span>{ campus.name }</span>
                   </h3>
                 </div>

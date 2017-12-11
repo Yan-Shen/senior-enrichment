@@ -65,9 +65,9 @@ class SingleCampus extends Component {
         </div >
         <div className="center">
           <NavLink to ={`/campuses/${campusId}/edit`} activeClassName="active">
-          <button type="submit" className="btn btn-success">Edit</button>
+          <button id="editCampus" type="submit" className="btn btn-success">Edit</button>
           </NavLink>
-         <button onClick={this.props.clickHandler} className="btn btn-danger">Delete</button>
+         <button id="deleteCampus" onClick={this.props.clickHandler} className="btn btn-danger">Delete</button>
         </div>
     </div>
      )
